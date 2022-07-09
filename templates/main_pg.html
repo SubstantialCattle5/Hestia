@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hestia</title>
+</head>
+<body>
+ <form action="" method="post">
+     {% csrf_token %}
+     <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" placeholder="title"><br>
+    <textarea name="task" rows="5" cols="100" placeholder="Enter"></textarea>
+
+     <button type="submit" name="save">Save</button>
+ </form>
+</body>
+</html>
