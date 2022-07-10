@@ -9,12 +9,15 @@ contract Voting {
     address public owner ;
     uint256 public vote_sum ;
     bool public paying_check ;
+    address[] public voters_list ;
 
 
-    constructor(address _winner , uint256 _money) public {
+    constructor(address _winner , uint256 _money , address[] memory _voters) public {
         winner = _winner ;
         money = _money ;
         owner = msg.sender;
+        voters_list = _voters ;
+
     }
     modifier onlyOwner() {
         require(msg.sender == owner);
@@ -30,10 +33,20 @@ contract Voting {
     */
     function vote(bool _flag) public{
         bool flag = true ;
+        // check if the voter has already voted
         for(uint256 index = 0 ; index <voters.length ; index++){
            if(msg.sender == voters[index]){
                flag = false ;
                break ;
+
+           }
+        }
+        // check for voter list names
+        for(uint256 index = 0 ; index <voters_list.length ; index++){
+           if (msg.sender != voters_list[index]){
+               flag = false ;
+               break ;
+
            }
         }
         // Check
