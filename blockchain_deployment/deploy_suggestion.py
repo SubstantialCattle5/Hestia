@@ -3,18 +3,36 @@ import json
 import web3.eth
 from solcx import compile_standard, install_solc
 from web3 import Web3
-from web3.auto import w3
 
 
 class Deploy_Suggestion:
-    def __init__(self, private_key, address, problem):
+    def __init__(self, private_key, address):
+        """
+        @note : initializes the abi . w3
+        :param private_key: string
+        :param address: string - user user_address
+        """
         with open("./Suggestion.sol", "r") as file:
             self.suggestion_file = file.read()
-        self.address = address
+        self.user_address = address
         self.pvt_key = private_key
-        self.problem = problem
+        # for connecting to ganache
+        self.w3 = Web3(Web3.HTTPProvider("http://0.0.0.0:8545"))
+        self.chain_id = 1337
 
-    def deploy(self):
+        # Getting the latest transaction
+        self.nonce = self.w3.eth.getTransactionCount(self.user_address)
+        self.count = 0
+
+        # To check if the user has voted or not
+        self.flag = False
+    def deploy(self, problem):
+        """
+        @note : deploys the contract suggestion
+        :param problem:
+        :return: user_address of the deployed contract
+
+        """
         # compile our solidity
         install_solc("0.8.0")
         compile_sol = compile_standard(
@@ -41,47 +59,107 @@ class Deploy_Suggestion:
             json.dump(compile_sol, file, indent=2)
 
         # get bytecode
-        bytecode = compile_sol["contracts"]["Suggestion.sol"]["Suggestion"]["evm"]["bytecode"]["object"]
+        self.bytecode = compile_sol["contracts"]["Suggestion.sol"]["Suggestion"]["evm"]["bytecode"]["object"]
         # get abi
-        abi = compile_sol["contracts"]["Suggestion.sol"]["Suggestion"]["abi"]
-
-        # for connecting to ganache
-        w3 = Web3(Web3.HTTPProvider("http://0.0.0.0:8545"))
-        chain_id = 1337
+        self.abi = compile_sol["contracts"]["Suggestion.sol"]["Suggestion"]["abi"]
 
         # Creating the contract
-        Suggestion = w3.eth.contract(abi=abi, bytecode=bytecode)
-
-        # Getting the latest transaction
-        nonce = w3.eth.getTransactionCount(self.address)
+        Suggestion = self.w3.eth.contract(abi=self.abi, bytecode=self.bytecode)
 
         # Submit the transaction that deploys the contract
 
-        transaction = Suggestion.constructor(self.problem).buildTransaction(
+        transaction = Suggestion.constructor(problem).buildTransaction(
             {
-                "chainId": chain_id,
-                "gasPrice": w3.eth.gas_price,
-                "from": self.address,
-                "nonce": nonce,
+                "chainId": self.chain_id,
+                "gasPrice": self.w3.eth.gas_price,
+                "from": self.user_address,
+                "nonce": self.nonce,
             }
         )
         # Sign
-        signed_txn = w3.eth.account.sign_transaction(transaction, private_key=self.pvt_key)
+        signed_txn = self.w3.eth.account.sign_transaction(transaction, private_key=self.pvt_key)
         print("Deploying the contract!")
         # send it
-        tx_hash = w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        tx_hash = self.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
         # wait
-        tx_reciept = w3.eth.wait_for_transaction_receipt(tx_hash)
+        tx_reciept = self.w3.eth.wait_for_transaction_receipt(tx_hash)
         print(f'Contract deployed {tx_reciept.contractAddress}')
 
         return tx_reciept.contractAddress
 
+    def solution(self, contract_address, name, solution, cost):
+
+        self.count += 1
+        # Calling the transaction
+        Suggestion = self.w3.eth.contract(address=contract_address, abi=self.abi)
+
+        suggestion_given = Suggestion.functions.newsolution(name, solution, cost).buildTransaction(
+            {
+                "chainId": self.chain_id,
+                "gasPrice": self.w3.eth.gas_price,
+                "from": self.user_address,
+                "nonce": self.nonce + self.count,
+
+            }
+        )
+        signed_txn = self.w3.eth.account.sign_transaction(
+            suggestion_given, private_key=self.pvt_key
+        )
+        tx_hash = self.w3.eth.send_raw_transaction(
+            signed_txn.rawTransaction
+        )
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        return Suggestion.functions.task(self.user_address).call()
+
+    def user_vote(self, vote: bool, contract_address: str, vote_address: str):
+        """
+
+        @note - each address  can vote only once.
+        :param vote: bool - true : +1 or false : -1
+        :param contract_address: address of the deployed contract
+        :param vote_address:
+        :return: The contract address of the voted suggestion
+                 None if already voted
+
+        """
+        if not self.flag:
+            self.count += 1
+            Suggestion = self.w3.eth.contract(address=contract_address, abi=self.abi)
+            user_vote_tx = Suggestion.functions.uservote(True, vote_address).buildTransaction(
+                {
+                    "chainId": self.chain_id,
+                    "gasPrice": self.w3.eth.gas_price,
+                    "from": "0x0481AE65E5088a35727B2294071aA1Bc62804A2b",
+                    "nonce": self.nonce + self.count,
+
+                }
+            )
+
+            signed_txn = self.w3.eth.account.sign_transaction(
+                user_vote_tx, private_key=self.pvt_key
+            )
+            tx_hash = self.w3.eth.send_raw_transaction(
+                signed_txn.rawTransaction
+            )
+            tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+            self.flag = True
+            return Suggestion.functions.task(self.user_address).call()
+
+
 
 def main():
-    obj = Deploy_Suggestion(private_key="0xeed015846a770c92010156f31171e52b39202cef0ae9d5edbea8792671d2d416",
-                            address="0x5742bcFD2b4006aF9e431A3BEE7d9116c30f988a",
-                            problem="Eat icecream")
-    address = obj.deploy()
+    problem = "Eat icecream"
+    obj = Deploy_Suggestion(private_key="0x70f694a7757486da2a79821299bfadffe8184fd0c64d14ede71ff4eeaf4b84f0",
+                            address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b",
+                            )
+    address = obj.deploy(problem=problem)
+    a = obj.solution(address, 'b', 'c', 12)
+    print(a)
+    b = obj.user_vote(vote=True, contract_address=address, vote_address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b")
+    print(b)
+    b = obj.user_vote(vote=True, contract_address=address, vote_address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b")
+    print(b)
 
 
 if __name__ == "__main__":

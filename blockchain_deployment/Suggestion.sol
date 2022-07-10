@@ -71,6 +71,7 @@ contract Suggestion {
         else{
         task[msg.sender] = tasks(msg.sender , _name , _solution , _cost , task[msg.sender].votes) ;
     }
+
     }
 
 
@@ -93,7 +94,7 @@ contract Suggestion {
     /*
         function3
         @param : none
-        @return : address of the winning suggestion can return none
+        @return : user_address of the winning suggestion can return none
         @notice : returns the winner -- only owner can call it
     */
     function endsuggestion() public onlyOwner returns(address winner){

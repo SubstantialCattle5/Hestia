@@ -26,7 +26,7 @@ contract Voting {
         function1
         @param : flag - tells if the vote is +ve or -ve
         @return : nothing
-        @notice : votes on the solution and pushes the user address to the list
+        @notice : votes on the solution and pushes the user user_address to the list
     */
     function vote(bool _flag) public{
         bool flag = true ;
