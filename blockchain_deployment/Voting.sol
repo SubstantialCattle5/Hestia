@@ -62,10 +62,10 @@ contract Voting {
     /*
     @notice Checks if every vote given was +ve or not
     */
-    function withdraw(uint256 judges) public onlyOwner{
+    function withdraw() public onlyOwner{
         if (paying_check){
             address payable winner2 = payable(winner) ;
-            winner2.transfer(address(this).balance) ;
+            winner2.transfer(address(owner).balance) ;
         }
     }
 

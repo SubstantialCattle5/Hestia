@@ -69,7 +69,6 @@ class Deploy_Voting:
         Voting = self.w3.eth.contract(abi=self.abi, bytecode=self.bytecode)
 
         # Submit the transaction that deploys the contract
-        print(check)
         transaction = Voting.constructor(winner, funds, check).buildTransaction(
             {
                 "chainId": self.chain_id,
@@ -89,8 +88,45 @@ class Deploy_Voting:
 
         return tx_reciept.contractAddress
 
-    def vote(self, address):
-        return
+    def vote(self, contract_address, decide: bool):
+        self.count += 1
+        contract = self.w3.eth.contract(address=contract_address, abi=self.abi)
+        vote_contract = contract.functions.vote(decide).buildTransaction({
+            "chainId": self.chain_id,
+            "gasPrice": self.w3.eth.gas_price,
+            "from": self.user_address,
+            "nonce": self.nonce + self.count,
+
+        })
+        signed_txn = self.w3.eth.account.sign_transaction(
+            vote_contract, private_key=self.pvt_key
+        )
+        tx_hash = self.w3.eth.send_raw_transaction(
+            signed_txn.rawTransaction
+        )
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        return contract.functions.paying_check().call()
+
+    def funds_transfer(self, contract_address):
+        self.count += 1
+        contract = self.w3.eth.contract(address=contract_address, abi=self.abi)
+        vote_contract = contract.functions.withdraw().buildTransaction({
+            "chainId": self.chain_id,
+            "gasPrice": self.w3.eth.gas_price,
+            "from": self.user_address,
+            "nonce": self.nonce + self.count,
+
+        })
+        signed_txn = self.w3.eth.account.sign_transaction(
+            vote_contract, private_key=self.pvt_key
+        )
+        tx_hash = self.w3.eth.send_raw_transaction(
+            signed_txn.rawTransaction
+        )
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        return contract.functions.winner().call()
 
 
 def main():
@@ -98,8 +134,10 @@ def main():
     obj = Deploy_Voting(address="0xD03036BEd8208d3f96c00edF0b5Ada3D3DE47152",
                         private_key="0x6b8316255c09630c67abbb411da34ecd8fb91ef87dd5c7afd19de234cc0c7237")
 
-    address = obj.deploy(winner="0x0481AE65E5088a35727B2294071aA1Bc62804A2b", funds=5, check=supervisors)
-    print(address)
+    address = obj.deploy(winner="0x28B469B6668B42671e29374dDf10c88Fa35cf777", funds=5, check=supervisors)
+    print(obj.vote(address, True))
+    funds = obj.funds_transfer(contract_address=address)
+    print(f"Winner" + funds)
 
 
 if __name__ == "__main__":

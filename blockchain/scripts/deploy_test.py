@@ -1,27 +1,29 @@
-from brownie import Voting, accounts
+from brownie import Voting2 , accounts
 
 
 def deploy():
-    voting = Voting.deploy("0xD03036BEd8208d3f96c00edF0b5Ada3D3DE47152", 20, {
+    voters_list = [accounts[1] , accounts[2] , accounts[3]]
+    voting = Voting2.deploy(accounts[1], voters_list, {
         'from': accounts[0]
     })
 
 
 def vote():
-    contract = Voting[-1]
-    contract.vote(False, {
+    contract = Voting2[-1]
+    contract.voting(True , {
         "from": accounts[1]
     })
-    print(contract.paying_check())
-    contract.vote(True, {
-        "from": accounts[1]
+    print(contract.vote())
+    contract.voting(False , {
+        "from": accounts[3]
     })
-    print(contract.paying_check())
-    contract.vote(True, {
+    print(contract.vote())
+    contract.voting(True , {
         "from": accounts[2]
     })
-    print(contract.paying_check())
+    print(contract.vote())
 
+    print(f'Contract goes to {contract.vote()}')
 
 def main():
     deploy()
