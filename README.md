@@ -45,3 +45,5 @@ Removes the tedious-convoluted voting systems and removes those long and boring 
 <img src="images/8.png">
 
 <img src="images/9.png">
+
+<img src="images/10.png">

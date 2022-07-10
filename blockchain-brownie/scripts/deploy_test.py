@@ -19,7 +19,7 @@ def vote():
         "from": accounts[3]
     })
     print(f"Vote Status: {contract.vote()} ")
-    contract.voting(False, {
+    contract.voting(True, {
         "from": accounts[2]
     })
     print(f"Vote Status: {contract.vote()} ")
