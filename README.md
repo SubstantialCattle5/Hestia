@@ -22,6 +22,16 @@ Removes the tedious-convoluted voting systems and removes those long and boring 
 
 ### Example
 
+1. WEBSITE 
+
+<img src="images/11.png">
+
+<img src="images/12.png">
+
+<img src="images/14.png">
+
+
+
 1. CLi program for the suggestions part
 
 <img src="images/1.png">
