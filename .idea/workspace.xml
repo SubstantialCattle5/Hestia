@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c01f4440-55f5-4d57-84aa-190092bf905b" name="Changes" comment="adding initial readme">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain-brownie/scripts/deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain-brownie/scripts/deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blockchain-brownie/scripts/deploy_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain-brownie/scripts/deploy_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +159,7 @@
       <updated>1657420240524</updated>
       <workItem from="1657420241730" duration="1752000" />
       <workItem from="1657422438704" duration="89000" />
-      <workItem from="1657451385120" duration="4693000" />
+      <workItem from="1657451385120" duration="6531000" />
     </task>
     <task id="LOCAL-00001" summary="adding voting2">
       <created>1657451718201</created>
@@ -182,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657456657585</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="adding initial readme">
+      <created>1657457189533</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657457189533</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +216,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Hestia$Cli.coverage" NAME="Cli Coverage Results" MODIFIED="1657452346149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Hestia$test.coverage" NAME="test Coverage Results" MODIFIED="1657451385987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/blockchain_deployment" />
-    <SUITE FILE_PATH="coverage/Hestia$cli_program.coverage" NAME="cli-program Coverage Results" MODIFIED="1657455058229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Hestia$cli_program.coverage" NAME="cli-program Coverage Results" MODIFIED="1657457494232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

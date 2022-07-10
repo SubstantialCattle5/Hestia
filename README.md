@@ -39,3 +39,9 @@ Removes the tedious-convoluted voting systems and removes those long and boring 
 <img src="images/6.png">
 
 <img src="images/7.png">
+
+3. Brownie Run for Vote.sol
+
+<img src="images/8.png">
+
+<img src="images/9.png">
