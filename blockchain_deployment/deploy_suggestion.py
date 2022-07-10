@@ -26,6 +26,7 @@ class Deploy_Suggestion:
 
         # To check if the user has voted or not
         self.flag = False
+
     def deploy(self, problem):
         """
         @note : deploys the contract suggestion
@@ -88,7 +89,6 @@ class Deploy_Suggestion:
         return tx_reciept.contractAddress
 
     def solution(self, contract_address, name, solution, cost):
-
         self.count += 1
         # Calling the transaction
         Suggestion = self.w3.eth.contract(address=contract_address, abi=self.abi)
@@ -146,13 +146,40 @@ class Deploy_Suggestion:
             self.flag = True
             return Suggestion.functions.task(self.user_address).call()
 
+    def endsuggestion(self, contract_address: str):
+        """
+        @note - can only be used by the owner of the contract
+                ends the poll.
+        :param contract_address:
+        :return: the winner of the suggestion poll
+        """
+        self.count += 1
+        Suggestion = self.w3.eth.contract(address=contract_address, abi=self.abi)
+
+        suggestion_endpoll = Suggestion.functions.endsuggestion().buildTransaction(
+            {
+                "chainId": self.chain_id,
+                "gasPrice": self.w3.eth.gas_price,
+                "from": self.user_address,
+                "nonce": self.nonce + self.count,
+
+            }
+        )
+        signed_txn = self.w3.eth.account.sign_transaction(
+            suggestion_endpoll, private_key=self.pvt_key
+        )
+        tx_hash = self.w3.eth.send_raw_transaction(
+            signed_txn.rawTransaction
+        )
+        tx_receipt = self.w3.eth.wait_for_transaction_receipt(tx_hash)
+
+        return Suggestion.functions.winner2().call()
 
 
 def main():
     problem = "Eat icecream"
     obj = Deploy_Suggestion(private_key="0x70f694a7757486da2a79821299bfadffe8184fd0c64d14ede71ff4eeaf4b84f0",
-                            address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b",
-                            )
+                            address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b", )
     address = obj.deploy(problem=problem)
     a = obj.solution(address, 'b', 'c', 12)
     print(a)
@@ -160,6 +187,8 @@ def main():
     print(b)
     b = obj.user_vote(vote=True, contract_address=address, vote_address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b")
     print(b)
+    c = obj.endsuggestion(contract_address=address)
+    print(c)
 
 
 if __name__ == "__main__":

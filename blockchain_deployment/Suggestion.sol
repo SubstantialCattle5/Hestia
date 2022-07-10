@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 contract Suggestion {
     address public  owner ;
     string public problem ;
-
+    address public winner2 ;
     /*
         Problem - Buy more Benches
 
@@ -107,6 +107,7 @@ contract Suggestion {
                 checkaddress = voters[index];
             }
         }
+        winner2 = checkaddress ;
         winner = checkaddress ;
     }
 
