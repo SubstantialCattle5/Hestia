@@ -75,6 +75,6 @@ def main_pg(request):
         if 'save' in request.POST:
             title = request.POST['title']
             task = request.POST['task']
-        # modal for confirmation ?
+
 
     return render(request, 'main_pg.html')
