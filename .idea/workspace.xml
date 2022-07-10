@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c01f4440-55f5-4d57-84aa-190092bf905b" name="Changes" comment="adding final readme">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/migrations/0002_questions_title_alter_questions_address_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/migrations/0003_remove_questions_id_remove_questions_user_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/migrations/0004_questions_id_alter_questions_address.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/save.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/problems.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/solution.html" afterDir="false" />
+    <list default="true" id="c01f4440-55f5-4d57-84aa-190092bf905b" name="Changes" comment="uploading the starting bit">
+      <change afterPath="$PROJECT_DIR$/templates/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blockchain_deployment/deploy_suggestion.py" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain_deployment/deploy_suggestion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/main_pg.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_pg.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/problems.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/problems.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +49,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/nilay/PROJECTS/HACK/Hestia/cli-program.py"
+    "last_opened_file_path": "/home/nilay/PROJECTS/HACK/Hestia/templates"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/blockchain_deployment" />
     </key>
   </component>
@@ -175,7 +166,7 @@
       <updated>1657420240524</updated>
       <workItem from="1657420241730" duration="1752000" />
       <workItem from="1657422438704" duration="89000" />
-      <workItem from="1657451385120" duration="15113000" />
+      <workItem from="1657451385120" duration="16791000" />
     </task>
     <task id="LOCAL-00001" summary="adding voting2">
       <created>1657451718201</created>
@@ -226,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657459567486</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="uploading the starting bit">
+      <created>1657471485729</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1657471485729</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +247,8 @@
     <MESSAGE value="adding cli for suggestion" />
     <MESSAGE value="adding initial readme" />
     <MESSAGE value="adding final readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding final readme" />
+    <MESSAGE value="uploading the starting bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="uploading the starting bit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Hestia$Cli.coverage" NAME="Cli Coverage Results" MODIFIED="1657452346149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

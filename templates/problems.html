@@ -12,32 +12,9 @@
 
   <body>
 
-  <!-- navbar-->
-  <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DoNothing</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="position: absolute ; right : 20px ; ">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/mood_table">Mood-Table</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
     <!--Title-->
   <div class = "text-center px-4 pt-5 my-5">
-       <h1 class = 'display-4 fw-bold' >Questions :</h1>
+       <h1 class = 'display-4 fw-bold' >Agendas :</h1>
         {% for question in questions %}
         <p class="lead mb-4">{{question}}.</p><hr>
       {% endfor %}
@@ -49,24 +26,6 @@
   </div>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Why.</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        You're not going to do this task...Why even save it?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 

@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Hestia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
  <form action="" method="post">
      {% csrf_token %}
-     <label for="title">Title:</label><br>
+     <h4 class="display-4">Enter :</h4><br>
+     <label for="title" class="lead">Title:</label><br>
     <input type="text" id="title" name="title" placeholder="title"><br>
-    <textarea name="task" rows="5" cols="100" placeholder="Enter"></textarea>
+     <label for="title" class="lead">Agenda :</label><br>
+    <textarea name="task" rows="5" cols="100" placeholder="Enter"></textarea><br>
+     <label for="title" class="lead">Address:</label><br>
     <input type="text" name="address" placeholder="0x Address "><br>
-     <input type="text" name="pvt_key" placeholder="0x Pvt key"><br>
+     <label for="title" class="lead">Private Key:</label><br>
+     <input type="text" name="pvt_key" placeholder="0x Pvt key"><br><br>
 
-     <button type="submit" name="save">Save</button>
+     <button type="submit" class="btn btn-warning"name="save">Save</button>
  </form>
 </body>
 </html>
