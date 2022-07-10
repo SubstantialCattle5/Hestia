@@ -36,14 +36,20 @@ Removes the tedious-convoluted voting systems and removes those long and boring 
 
 2. Brownie Run for Suggestion.sol
 
+
+
 <img src="images/6.png">
 
 <img src="images/7.png">
 
 3. Brownie Run for Vote.sol
 
+### When one them says : no
+
 <img src="images/8.png">
 
 <img src="images/9.png">
+
+### When all of them say : yes
 
 <img src="images/10.png">
