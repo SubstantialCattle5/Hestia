@@ -1009,6 +1009,11 @@ class Deploy_Suggestion:
 
         return tx_reciept.contractAddress
 
+    def problem(self , address):
+      # Creating the contract
+      Suggestion = self.w3.eth.contract(abi=self.abi, bytecode=self.bytecode)
+      return Suggestion.functions.problem().call()
+
     def solution(self, contract_address, name, solution, cost):
         self.count += 1
         # Calling the transaction

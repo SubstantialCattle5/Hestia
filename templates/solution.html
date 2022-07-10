@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hestia</title>
+</head>
+<body>
+    <h3>Question {{ question }}</h3>
+    <form type="post" action="">
+        {% csrf_token %}
+        <input name="address" placeholder="address"><br>
+        <input name="name" placeholder="name"><br>
+        <textarea name="answer" placeholder="answer"></textarea><br>
+        <input name="cost" placeholder="cost"><br>
+        <button name="save" type="submit">Save</button>
+    </form>
+</body>
+</html>

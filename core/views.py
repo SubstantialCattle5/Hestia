@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -7,17 +9,21 @@ from django.contrib.auth.models import User
 from django.core.checks import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from core.models import Questions
+from blockchain_deployment import deploy_suggestion as ds
 
 # Create your views here.
+
+contracts = dict()
+
 
 def index(request):
     if request.method == "POST":
         if 'login' in request.POST:
             return redirect("login")
         # CHANGE
-        elif 'signup' in request.POST :
-            return  redirect("signup")
+        elif 'signup' in request.POST:
+            return redirect("signup")
         elif 'menu' in request.POST:
             return redirect("main_pg")
     return render(request, "index.html")
@@ -37,7 +43,6 @@ def login(request):
     return render(request, 'login.html')
 
 
-@login_required(login_url='/login')
 def logout(request):
     auth.logout(request)
     return redirect('/')
@@ -72,10 +77,50 @@ def signup(request):
         return render(request, 'signup.html')
 
 
+questions = list()
+
+
 def main_pg(request):
     if request.method == "POST":
+        global contracts
         if 'save' in request.POST:
-            title = request.POST['title']
             task = request.POST['task']
-            
+            address = request.POST['address']
+            pvt_key = request.POST['pvt_key']
+            new_contract = ds.Deploy_Suggestion(address=address, private_key=pvt_key)
+            address = new_contract.deploy(problem=task)
+            contracts[new_contract] = [address, task]
+            questions.append(task)
+        return redirect('problems')
     return render(request, 'main_pg.html')
+
+
+index2 = int()
+
+
+def problems(request):
+    global questions
+    for index in contracts:
+        questions.append(contracts[index][1])
+    if request.method == 'POST':
+        global index2
+        index2 = request.POST["index"]
+        return redirect("solution")
+    return render(request, "problems.html", {
+        "questions": questions
+    })
+
+
+def solution(request):
+    print(questions)
+    print(index2)
+    question = questions[int(index2) - 1]
+    if request.method == "POST" :
+        address = request.POST["address"]
+        name = request.POST["name"]
+        answer = request.POST["answer"]
+        cost = request.POST["cost"]
+
+    return render(request, "solution.html", {
+        "question": question
+    })
