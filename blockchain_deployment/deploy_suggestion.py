@@ -176,20 +176,3 @@ class Deploy_Suggestion:
         return Suggestion.functions.winner2().call()
 
 
-def main():
-    problem = "Eat icecream"
-    obj = Deploy_Suggestion(private_key="0x70f694a7757486da2a79821299bfadffe8184fd0c64d14ede71ff4eeaf4b84f0",
-                            address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b", )
-    address = obj.deploy(problem=problem)
-    a = obj.solution(address, 'b', 'c', 12)
-    print(a)
-    b = obj.user_vote(vote=True, contract_address=address, vote_address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b")
-    print(b)
-    b = obj.user_vote(vote=True, contract_address=address, vote_address="0x0481AE65E5088a35727B2294071aA1Bc62804A2b")
-    print(b)
-    c = obj.endsuggestion(contract_address=address)
-    print(c)
-
-
-if __name__ == "__main__":
-    main()
