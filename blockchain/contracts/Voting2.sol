@@ -1,16 +1,21 @@
 pragma solidity ^0.8.0;
 
 contract Voting2 {
-    address public winner ;
+    address payable  winner ;
     address [] public voters_list;
     address[] internal voters_already_voted ;
     address public owner  ;
     bool public vote = true  ;
+    address[] internal funders ;
 
     constructor(address _winner, address[] memory _voters_list){
-        winner = _winner ;
+        winner = payable(_winner) ;
         owner = msg.sender ;
         voters_list = _voters_list ;
+    }
+
+    function fund() public payable {
+        funders.push(msg.sender);
     }
 
     modifier onlyOwner(){
@@ -42,6 +47,16 @@ contract Voting2 {
 
         if(check && vote){
             vote = _vote  ;
+        }
+    }
+
+    /*
+    @notice Checks if every vote given was +ve or not
+    */
+    function withdraw() public onlyOwner{
+        if (vote){
+            address payable winner2 = payable(winner) ;
+            winner2.transfer(address(this).balance) ;
         }
     }
 

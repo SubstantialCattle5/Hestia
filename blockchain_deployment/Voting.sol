@@ -13,7 +13,7 @@ contract Voting {
 
 
     constructor(address _winner , uint256 _money , address[] memory _voters) public {
-        winner = _winner ;
+        winner = payable(_winner) ;
         money = _money ;
         owner = msg.sender;
         voters_list = _voters ;
