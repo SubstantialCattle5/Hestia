@@ -47,7 +47,7 @@ contract Suggestion {
 
     /* function 1 - creates a new solution
         @param : name , solution , cost , votes
-        @return : user name
+        @return :
         @notice :
         - first checks if the user hasn't already given his a solution
         - then initializes a new task

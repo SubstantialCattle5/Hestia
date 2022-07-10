@@ -16,7 +16,9 @@ def index(request):
         if 'login' in request.POST:
             return redirect("login")
         # CHANGE
-        elif 'signup' in request.POST:
+        elif 'signup' in request.POST :
+            return  redirect("signup")
+        elif 'menu' in request.POST:
             return redirect("main_pg")
     return render(request, "index.html")
 
@@ -75,6 +77,5 @@ def main_pg(request):
         if 'save' in request.POST:
             title = request.POST['title']
             task = request.POST['task']
-
-
+            
     return render(request, 'main_pg.html')

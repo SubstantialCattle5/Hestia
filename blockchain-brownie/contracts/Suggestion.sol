@@ -93,7 +93,7 @@ contract Suggestion {
     /*
         function3
         @param : none
-        @return : address of the winning suggestion can return none
+        @return : contract_address of the winning suggestion can return none
         @notice : returns the winner -- only owner can call it
     */
     function endsuggestion() public onlyOwner returns(address winner){
