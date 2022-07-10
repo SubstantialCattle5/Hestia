@@ -119,7 +119,6 @@ def solution(request):
         address = request.POST["address"]
         name = request.POST["name"]
         answer = request.POST["answer"]
-        cost = request.POST["cost"]
 
     return render(request, "solution.html", {
         "question": question
