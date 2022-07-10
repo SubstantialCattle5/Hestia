@@ -15,9 +15,9 @@ def run(_problem: str):
     problem_dict[problem] = suggestion
 
 
-def createsolution(problem, index):
+def createsolution(name, problem, index):
     suggestion = problem_dict[problem]  # grabbing the latest suggestion
-    flag = suggestion.newsolution("nilay", "sleep", 12, {
+    flag = suggestion.newsolution(name, "Buy more stuff", 12, {
         'from': accounts[index]
     })
     print(flag)
@@ -33,6 +33,7 @@ def vote(problem):
     a = suggestion.task
     print(a(accounts[0]))
     print(a(accounts[1]))
+    print(a(accounts[2]))
 
 
 def endpoll(problem):
@@ -45,10 +46,10 @@ def endpoll(problem):
 
 def main():
     run('a')
-    createsolution('a', 1)
+    createsolution('bender', "a", 1)
     vote('a')
-    createsolution('a', 0)
+    createsolution('leeela', "a", 0)
     vote('a')
-    createsolution('a', 0)
+    createsolution('fry', "a", 2)
     vote('a')
     endpoll('a')
