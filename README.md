@@ -2,7 +2,7 @@
 
 <!-- PROJECT LOGO -->
 
-  <h3 align="center">Hestia/h3>
+  <h3 align="center">Hestia</h3>
 
   <p align="center">
     A web3 based Society management app.
