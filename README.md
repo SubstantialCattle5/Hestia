@@ -39,18 +39,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`Template`
+Hestia tries to eliminate those boring society meetings altogether now rather then wasting the limited time you have on this earth on pesky society crap. The Hesia will handle all of it for you. It allows people to post queries and lets people talk about it. Hestia even supports quotation from the vendors and let members vote on it and since everything is in blockchain it will be as fair as possible. 
 
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [Jest]()
+* [Solidity]()
+* [Ganache]()
 
 
 
@@ -71,7 +67,7 @@ npm install npm@latest -g
  
 1. Clone the repo
 ```sh
-git clone https://github.com/csivitu/Template.git
+git clone https://github.com/SubstantialCattle5/Hestia
 ```
 2. Install NPM packages
 ```sh
