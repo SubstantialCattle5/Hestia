@@ -2,10 +2,10 @@
 
 <!-- PROJECT LOGO -->
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Hestia/h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
+    A web3 based Society management app.
     <br />
     <a href="https://github.com/csivitu/Template"><strong>Explore the docs »</strong></a>
     <br />
